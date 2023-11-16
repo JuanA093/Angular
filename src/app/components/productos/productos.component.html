@@ -1,0 +1,41 @@
+<body>
+    <p>TAREAS</p>     
+    <section id="formulario">     
+            <div class="menu">
+                <select [(ngModel)]="categoria">
+                    <option value="domestico">domestico</option>
+                    <option value="educativo">educativo</option>
+                    <option value="empresarial">empresarial</option>
+                    <option value="agropecuario">agropecuario</option>
+                    <option value="actividad">actividad</option>
+                </select>
+            </div>
+            <div>
+                <input type="text"placeholder='Ingrese la tarea' [(ngModel)]="tarea">
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-primary" (click)="enviarFormulario()"id='enviar'>Enviar</button>
+            <div *ngIf="this.enviar;else sinFormulario" id="lista">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CATEGORIA</th>
+                            <th>TAREA</th>
+                        </tr>   
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let persona of listaFormulario">
+                            <app-persona  [persona]="persona"></app-persona>
+                            <input type="checkbox" class="check" [disabled]="persona.checkEstado"  (click)="elCheck(persona)"> 
+                        </tr> 
+                    </tbody>
+                </table>              
+            </div>
+            <ng-template #sinFormulario>
+                <!-- <label style="color: red; font-weight: bold;">No hay registro</label> -->
+            </ng-template>              
+    </section> 
+</body>    
+                                
+    
